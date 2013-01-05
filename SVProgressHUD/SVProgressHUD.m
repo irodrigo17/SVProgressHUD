@@ -46,12 +46,15 @@ CGFloat SVProgressHUDRingThickness = 6;
 - (void)moveToPoint:(CGPoint)newCenter rotateAngle:(CGFloat)angle;
 - (void)positionHUD:(NSNotification*)notification;
 
+- (void)cancelRingLayerAnimation;
+- (CAShapeLayer *)createRingLayerWithCenter:(CGPoint)center radius:(CGFloat)radius lineWidth:(CGFloat)lineWidth color:(UIColor *)color;
+
 @end
 
 
 @implementation SVProgressHUD
 
-@synthesize overlayWindow, hudView, maskType, fadeOutTimer, stringLabel, imageView, spinnerView, visibleKeyboardHeight;
+@synthesize overlayWindow, hudView, maskType, fadeOutTimer, stringLabel, imageView, spinnerView, visibleKeyboardHeight, ringLayer = _ringLayer, backgroundRingLayer = _backgroundRingLayer, progress = _progress;
 
 
 + (SVProgressHUD*)sharedView {
